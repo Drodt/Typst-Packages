@@ -1,0 +1,27 @@
+[package]
+name = "drodt-pres"
+version = "0.1.0"
+entrypoint = "src/lib.typ"
+
+authors = ["Daniel Drodt <https://daniel.drodt@tu-darmstadt.de/>"]
+license = "MIT"
+description = "Touying theme based on touying-unistra-pristine"
+# homepage = ""
+# repository = "https://github.com/spidersouris/touying-unistra-pristine"
+keywords = [
+  "touying",
+  "presentation",
+  "slides",
+  "lecture",
+  "university",
+  "theme",
+]
+categories = ["presentation"]
+disciplines = []
+compiler = "0.13.1"
+exclude = []
+
+[template]
+path = "template"
+entrypoint = "template.typ"
+thumbnail = "assets/thumbnail.webp"
