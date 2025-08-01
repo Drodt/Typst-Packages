@@ -46,7 +46,7 @@
   if type(r) == array {
     r = r.join($,$)
   }
-  l + turnstyle + r
+  l + math.thin + turnstyle + math.thin + r
 }
 
 #let sequent(
@@ -146,6 +146,7 @@
 #let Java = [Java]
 #let Rust = [Rust]
 #let JML = [JML]
+#let RustyKeY = [RustyKe#h(-2pt)Y]
 
 #let models = sym.tack.r.double
 #let not-models = sym.tack.r.double.not
@@ -205,3 +206,7 @@
 #let valids-two = vals-two + models
 #let valids-three = vals-three + models
 #let valids-four = vals-four + models
+
+#let refS(x) = $dlfunc("ref")^s (#x)$
+#let refM(x) = $dlfunc("mref")(#x)$
+#let place(x) = $floor.l #h(-.3em) floor.l #x ceil.r #h(-.3em) ceil.r$

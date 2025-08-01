@@ -916,9 +916,9 @@
 }
 
 #let pbox(
-  accent-color: blue.A,
-  border-color: blue.A.lighten(50%),
-  header-color: blue.A.lighten(65%),
+  accent-color: blue.B,
+  border-color: auto,
+  header-color: auto,
   body-color: none,
   width: auto,
   radius: 5pt,
@@ -940,12 +940,16 @@
       type(header-color) in (color, gradient, tiling),
       message: "expected color, gradient or pattern found " + str(type(header-color)),
     )
+  } else {
+    header-color = accent-color.lighten(50%)
   }
   if (border-color != auto) {
     assert(
       type(border-color) in (color, gradient, tiling),
       message: "expected color, gradient or pattern, found " + str(type(border-color)),
     )
+  } else {
+    border-color = accent-color.lighten(65%)
   }
   if (body-color != none) {
     assert(
