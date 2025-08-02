@@ -27,6 +27,7 @@
 #let upl = sym.brace.l
 #let upr = sym.brace.r
 #let update(lhs, rhs) = upl + lhs + upd + rhs + upr
+#let dupd = $ast #h(-.4em) ->$
 #let parupd = $||$
 #let applyUp(u) = upl + u + upr
 
@@ -207,6 +208,38 @@
 #let valids-three = vals-three + models
 #let valids-four = vals-four + models
 
-#let refS(x) = $dlfunc("ref")^s (#x)$
-#let refM(x) = $dlfunc("mref")(#x)$
+#let para-fn(name, ..args) = $dlfunc(#name)"<"#args.pos().join($,$)">"$
+#let para-sort(name, ..args) = $dlsort(#name)"<"#args.pos().join($,$)">"$
+
+#let instanceof(S) = para-fn("instanceof", S)
+
+// Integer
+
+#let Int = dlsort("int")
+
+#let in-int(ty) = text(style: "oblique", "in_" + ty)
+
+#let inI32 = in-int("i32")
+
+#let add = dlfunc("add")
+
+// References
+
+#let RefS(S) = para-sort("RefS", S)
+#let RefM(S) = para-sort("RefM", S)
+#let Place(S) = para-sort("Place", S)
+
+#let refS(S) = para-fn("refS", S)
+#let refSI = dlfunc("refS")
+#let refM(S) = para-fn("refM", S)
+#let refMI = dlfunc("refM")
 #let place(x) = $floor.l #h(-.3em) floor.l #x ceil.r #h(-.3em) ceil.r$
+
+// Arrays
+
+#let Array(E, N) = para-sort("Array", E, $"const" #N$)
+
+#let arrGet(S) = para-fn("get", S)
+#let arrGetI = dlfunc("get")
+#let arrSet(S) = para-fn("set", S)
+#let arrSetI = dlfunc("set")
