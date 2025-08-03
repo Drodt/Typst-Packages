@@ -60,7 +60,7 @@
       columns.push(19%)
       cells.push(cell(date))
     }
-    columns.push(8.5%)
+    columns.push(12%)
     cells.push(cell(utils.call-or-display(self, context {
       let current = int(utils.slide-counter.display())
       let last = int(utils.last-slide-counter.display())
