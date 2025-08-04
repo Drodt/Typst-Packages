@@ -543,13 +543,14 @@
   }
 
   let create-figure() = {
+    let cap = caption
     if (bold-caption) {
-      caption = text(weight: "bold", caption)
+      cap = text(weight: "bold", caption)
     }
 
     figure(
       fig,
-      caption: caption,
+      caption: cap,
       numbering: numbering,
     )
   }
