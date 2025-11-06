@@ -844,7 +844,7 @@
     config-store(
       // colorthemes from colors.typ
       colorthemes: colorthemes,
-      show-header: true,
+      show-header: false,
       show-footer: true,
       // footer first separator
       footer-first-sep: " | ",

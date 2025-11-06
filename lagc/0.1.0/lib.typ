@@ -3,7 +3,7 @@
 #let concatTr(a, b) = $#a dot.c #b$
 #let cont(e) = $upright("K")(#e)$
 #let contP(p, e) = $upright("K")^#p (#e)$
-#let mkTr(s) = $angle.l #s angle.r$
+#let mkTr(s) = $chevron.l #s chevron.r$
 #let valB(s, e) = $"val"_#s (#e)$
 #let valD(e) = valB(sym.sigma, e)
 #let valBP(b, p, e) = $"val"_#b^#p (#e)$

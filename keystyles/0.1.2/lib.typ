@@ -9,18 +9,18 @@
 
 #let mono(c) = text(font: "DejaVu Sans Mono", size: .8em, c)
 
-#let rust(c) = if type(c) == str { raw(lang: "rust", c) } else { mono(c) }
+#let rust(c) = if type(c) == str { raw(lang: "rs", c) } else { mono(c) }
 #let java(c) = if type(c) == str { raw(lang: "java", c) } else { mono(c) }
 
 #let pv(x) = rust(x)
 
-#let dia(p) = math.lr(sym.angle.l + rust(p) + sym.angle.r)
-#let diac(p) = math.lr(sym.angle.l + sym.pi + h(.2em) + rust(p) + h(.2em) + sym.omega + sym.angle.r)
+#let dia(p) = math.lr(sym.chevron.l + rust(p) + sym.chevron.r)
+#let diac(p) = math.lr(sym.chevron.l + sym.pi + h(.2em) + rust(p) + h(.2em) + sym.omega + sym.chevron.r)
 #let dlf(p, f) = dia(p) + f
 #let dlfc(p, f) = diac(p) + f
 #let dlbox(p) = sym.bracket.l + rust(p) + sym.bracket.r
 #let dlboxf(p, f) = dlbox(p) + f
-#let dlboth(p) = sym.angle.l + h(-.1em) + sym.bracket.l + rust(p) + sym.bracket.r + h(-.1em) + sym.angle.r
+#let dlboth(p) = sym.chevron.l + h(-.1em) + sym.bracket.l + rust(p) + sym.bracket.r + h(-.1em) + sym.chevron.r
 #let dlbothf(p, f) = dlboth(p) + f
 
 #let upd = sym.colon.eq
