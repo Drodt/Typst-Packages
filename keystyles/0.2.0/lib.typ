@@ -15,12 +15,28 @@
 #let pv(x) = rust(x)
 
 #let dia(p) = math.lr(sym.chevron.l + rust(p) + sym.chevron.r)
-#let diac(p) = math.lr(sym.chevron.l + sym.pi + h(.2em) + rust(p) + h(.2em) + sym.omega + sym.chevron.r)
+#let diac(p) = math.lr(
+  sym.chevron.l
+    + sym.pi
+    + h(.2em)
+    + rust(p)
+    + h(.2em)
+    + sym.omega
+    + sym.chevron.r,
+)
 #let dlf(p, f) = dia(p) + f
 #let dlfc(p, f) = diac(p) + f
 #let dlbox(p) = sym.bracket.l + rust(p) + sym.bracket.r
 #let dlboxf(p, f) = dlbox(p) + f
-#let dlboth(p) = sym.chevron.l + h(-.1em) + sym.bracket.l + rust(p) + sym.bracket.r + h(-.1em) + sym.chevron.r
+#let dlboth(p) = (
+  sym.chevron.l
+    + h(-.1em)
+    + sym.bracket.l
+    + rust(p)
+    + sym.bracket.r
+    + h(-.1em)
+    + sym.chevron.r
+)
 #let dlbothf(p, f) = dlboth(p) + f
 
 #let upd = sym.colon.eq
@@ -33,7 +49,17 @@
 
 #let expUpd(v, f) = $#v triangle.r #f$
 
-#let substOp(l, r) = sym.brace.l + sym.backslash + [subst] + h(.1em) + l + sym.semi + h(.1em) + r + sym.brace.r
+#let substOp(l, r) = (
+  sym.brace.l
+    + sym.backslash
+    + [subst]
+    + h(.1em)
+    + l
+    + sym.semi
+    + h(.1em)
+    + r
+    + sym.brace.r
+)
 
 // Sequents
 #let turnstyle = sym.arrow.r.double.long
@@ -55,9 +81,14 @@
   succ: none,
 ) = seq[$Gamma#if ante == none { none } else { sym.comma + ante }$][$#if succ == none { none } else { succ + sym.comma }Delta$]
 
-#let prooftree = curryst.prooftree.with(title-inset: 4pt, min-premise-spacing: 10pt)
+#let prooftree = curryst.prooftree.with(
+  title-inset: 4pt,
+  min-premise-spacing: 10pt,
+)
 #let rule(name, cond: none, def: false, ..premises, conclusion) = curryst.rule(
-  label: if def [#smallcaps(name)#label("dlrule:" + name)] else { smallcaps(name) },
+  label: if def [#smallcaps(name)#label("dlrule:" + name)] else {
+    smallcaps(name)
+  },
   name: cond,
   ..premises,
   conclusion,
@@ -129,7 +160,12 @@
 #let keyeq = math.accent(sym.eq, sym.dot)
 #let keyneq = math.accent(sym.eq.not, sym.dot)
 #let keyquantification(quant: none, ..args) = (
-  quant + h1(.1em) + args.at(0) + if args.len() == 1 { none } else { h(.1em) + args.at(1) } + sym.semi + h(.1em)
+  quant
+    + h1(.1em)
+    + args.at(0)
+    + if args.len() == 1 { none } else { h(.1em) + args.at(1) }
+    + sym.semi
+    + h(.1em)
 )
 #let keyallq = keyquantification.with(quant: sym.backslash + [forall])
 #let keyquantification = keyquantification.with(quant: sym.backslash + [exists])
@@ -143,11 +179,11 @@
 
 // KeY book
 
-#let KeY = [KeY]
+#let KeY = [Ke#h(-1pt)Y]
 #let Java = [Java]
 #let Rust = [Rust]
 #let JML = [JML]
-#let RustyKeY = [RustyKe#h(-2pt)Y]
+#let RustyKeY = [Rusty#KeY]
 
 #let models = sym.tack.r.double
 #let not-models = sym.tack.r.double.not
