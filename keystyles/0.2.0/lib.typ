@@ -83,7 +83,7 @@
 
 #let prooftree = curryst.prooftree.with(
   title-inset: 4pt,
-  min-premise-spacing: 10pt,
+  min-premise-spacing: 20pt,
 )
 #let rule(name, cond: none, def: false, ..premises, conclusion) = curryst.rule(
   label: if def [#smallcaps(name)#label("dlrule:" + name)] else {

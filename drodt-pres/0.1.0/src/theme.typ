@@ -17,11 +17,19 @@
 }
 
 #let footer(self) = {
-  let cell(body) = rect(width: 100%, height: 100%, inset: 0mm, outset: 0mm, fill: none, stroke: none, text(
-    size: 0.5em,
-    fill: self.colors.black,
-    body,
-  ))
+  let cell(body) = rect(
+    width: 100%,
+    height: 100%,
+    inset: 0mm,
+    outset: 0mm,
+    fill: none,
+    stroke: none,
+    text(
+      size: 0.5em,
+      fill: self.colors.black,
+      body,
+    ),
+  )
 
   let author = self.info.author
   let date = self.info.date
@@ -34,53 +42,59 @@
   }
 
   set align(center + horizon)
-  block(width: 101%, height: -25%, stroke: (top: 0.5pt + self.colors.black.lighten(70%)), {
-    set text(size: 1.5em)
+  block(
+    width: 101%,
+    height: -25%,
+    stroke: (top: 0.18mm + self.colors.black.lighten(70%)),
+    {
+      set text(size: 1.5em)
 
-    // give priority to short, since long is also used in title slide
-    let title = self.info.title
-    if (self.info.short-title != auto) {
-      title = self.info.short-title
-    }
-
-    let first-col-width = auto
-    let second-col-width = 75%
-    if self.info.logo.func() == image {
-      first-col-width = 19%
-      second-col-width = 71.5%
-    }
-
-    let columns = (1fr,)
-    let cells = (cell(box(title, height: 100%)),)
-    if _is(author) {
-      columns.insert(0, 20%)
-      cells.insert(0, cell(author))
-    }
-    if _is(date) {
-      columns.push(19%)
-      cells.push(cell(date))
-    }
-    columns.push(12%)
-    cells.push(cell(utils.call-or-display(self, context {
-      let current = int(utils.slide-counter.display())
-      let last = int(utils.last-slide-counter.display())
-      if current > last {
-        (
-          text(self.store.footer-appendix-label, style: "italic") + str(current)
-        )
-      } else {
-        str(current)
+      // give priority to short, since long is also used in title slide
+      let title = self.info.title
+      if (self.info.short-title != auto) {
+        title = self.info.short-title
       }
-    }
-      + " / "
-      + utils.last-slide-number)))
-    grid(
-      columns: columns,
-      rows: 0.5em,
-      stroke: none,
-      ..cells,
-    )
-  })
+
+      let first-col-width = auto
+      let second-col-width = 75%
+      if self.info.logo.func() == image {
+        first-col-width = 19%
+        second-col-width = 71.5%
+      }
+
+      let columns = (1fr,)
+      let cells = (cell(box(title, height: 100%)),)
+      if _is(author) {
+        columns.insert(0, 20%)
+        cells.insert(0, cell(author))
+      }
+      if _is(date) {
+        columns.push(19%)
+        cells.push(cell(date))
+      }
+      columns.push(12%)
+      cells.push(cell(utils.call-or-display(self, context {
+        let current = int(utils.slide-counter.display())
+        let last = int(utils.last-slide-counter.display())
+        if current > last {
+          (
+            text(self.store.footer-appendix-label, style: "italic")
+              + str(current)
+          )
+        } else {
+          str(current)
+        }
+      }
+        + " / "
+        + utils.last-slide-number)))
+      grid(
+        columns: columns,
+        rows: 0.5em,
+        stroke: none,
+        ..cells,
+      )
+    },
+  )
 }
 
 /// Creates a normal slide with a title and body
@@ -159,7 +173,9 @@
       title,
     )
 
-    let focus-sel = selector.or(..range(99, 100).map(l => heading.where(level: l)))
+    let focus-sel = selector.or(
+      ..range(99, 100).map(l => heading.where(level: l)),
+    )
     let section-sel = heading.where(level: 1)
 
     let sel = if show-sections and show-focus {
@@ -252,36 +268,42 @@
     set align(top + left)
     _gradientize(
       self,
-      block(fill: none, width: 100%, height: 100%, inset: (left: 2em, top: 1em), grid(
-        columns: 1fr,
-        rows: (6em, 6em, 4em, 4em),
-        logo-body,
-        _cell([
-          #text(size: 2em, weight: "bold", if (title != "") {
-            title
-          } else {
-            info.title
-          })
-          #linebreak()
-          #text(size: 1.7em, weight: "regular", if (subtitle != "") {
-            subtitle
-          } else {
-            info.subtitle
-          })
-        ]),
+      block(
+        fill: none,
+        width: 100%,
+        height: 100%,
+        inset: (left: 2em, top: 1em),
+        grid(
+          columns: 1fr,
+          rows: (6em, 6em, 4em, 4em),
+          logo-body,
+          _cell([
+            #text(size: 2em, weight: "bold", if (title != "") {
+              title
+            } else {
+              info.title
+            })
+            #linebreak()
+            #text(size: 1.7em, weight: "regular", if (subtitle != "") {
+              subtitle
+            } else {
+              info.subtitle
+            })
+          ]),
 
-        _cell([
-          #if ((none, "").all(x => x != info.subtitle)) {
-            linebreak()
-          }
-          #set text(size: 1.5em, fill: self.colors.white)
-          #text(weight: "bold", info.author)
-        ]),
-        _cell([
-          #set text(fill: self.colors.white.transparentize(25%))
-          #utils.display-info-date(self)
-        ]),
-      )),
+          _cell([
+            #if ((none, "").all(x => x != info.subtitle)) {
+              linebreak()
+            }
+            #set text(size: 1.5em, fill: self.colors.white)
+            #text(weight: "bold", info.author)
+          ]),
+          _cell([
+            #set text(fill: self.colors.white.transparentize(25%))
+            #utils.display-info-date(self)
+          ]),
+        ),
+      ),
       c1: self.colors.nblue.E,
       c2: self.colors.cyan.E,
     )
@@ -368,8 +390,11 @@
         + self.store.colorthemes.keys().join(", "),
     )
     assert(
-      self.store.colorthemes.at(theme).len() != 2 or self.store.colorthemes.at(theme).len() != 3,
-      message: "The theme " + theme + " is not a valid color theme. A valid color theme should have 2 or 3 colors.",
+      self.store.colorthemes.at(theme).len() != 2
+        or self.store.colorthemes.at(theme).len() != 3,
+      message: "The theme "
+        + theme
+        + " is not a valid color theme. A valid color theme should have 2 or 3 colors.",
     )
 
     let theme-has-text-color = self.store.colorthemes.at(theme).len() == 3
@@ -539,7 +564,9 @@
   )
 
   if (fig == none) {
-    panic("A hero slide requires an inline image such as image('path/to/image.jpg')")
+    panic(
+      "A hero slide requires an inline image such as image('path/to/image.jpg')",
+    )
   }
 
   let create-figure() = {
@@ -627,12 +654,17 @@
           row-gutter: gap,
         )
       } else if direction == "dtu" {
-        create-grid(create-text-cell(), create-image-cell(), columns: 1fr, rows: (1fr, 1fr), row-gutter: if gap
-          != auto {
-          gap
-        } else {
-          -2em
-        })
+        create-grid(
+          create-text-cell(),
+          create-image-cell(),
+          columns: 1fr,
+          rows: (1fr, 1fr),
+          row-gutter: if gap != auto {
+            gap
+          } else {
+            -2em
+          },
+        )
       }
     }
   }
@@ -671,12 +703,16 @@
     )
   }
 
-  let self = utils.merge-dicts(self, config-common(subslide-preamble: none), config-page(
-    footer: if hide-footer {
-      none
-    } else { footer },
-    margin: (x: 2em, top: 1em, bottom: 2em),
-  ))
+  let self = utils.merge-dicts(
+    self,
+    config-common(subslide-preamble: none),
+    config-page(
+      footer: if hide-footer {
+        none
+      } else { footer },
+      margin: (x: 2em, top: 1em, bottom: 2em),
+    ),
+  )
 
   touying-slide(self: self, body)
 })
@@ -736,7 +772,9 @@
   let figs = args.pos()
 
   if (figs == none) {
-    panic("A hero slide requires at least one inline image such as image('path/to/image.jpg')")
+    panic(
+      "A hero slide requires at least one inline image such as image('path/to/image.jpg')",
+    )
   }
 
   let rows = (figs.len() / columns)
@@ -891,7 +929,10 @@
         show heading.where(level: 1): set text(size: 1.5em, weight: "bold")
         show heading.where(level: 2): set block(below: 1.5em)
         // color links
-        show link: it => text(link-color, underline.with(offset: 3pt, extent: -1pt)(it))
+        show link: it => text(
+          link-color,
+          underline.with(offset: 3pt, extent: -1pt)(it),
+        )
         // custom quote
         show quote: it => _custom-quote(
           it,
@@ -933,13 +974,15 @@
   // check color types
   assert(
     type(accent-color) in (color, gradient, tiling),
-    message: "expected color, gradient or pattern found " + str(type(accent-color)),
+    message: "expected color, gradient or pattern found "
+      + str(type(accent-color)),
   )
 
   if (header-color != auto) {
     assert(
       type(header-color) in (color, gradient, tiling),
-      message: "expected color, gradient or pattern found " + str(type(header-color)),
+      message: "expected color, gradient or pattern found "
+        + str(type(header-color)),
     )
   } else {
     header-color = accent-color.lighten(50%)
@@ -947,7 +990,8 @@
   if (border-color != auto) {
     assert(
       type(border-color) in (color, gradient, tiling),
-      message: "expected color, gradient or pattern, found " + str(type(border-color)),
+      message: "expected color, gradient or pattern, found "
+        + str(type(border-color)),
     )
   } else {
     border-color = accent-color.lighten(65%)
@@ -955,13 +999,17 @@
   if (body-color != none) {
     assert(
       type(body-color) in (color, gradient, tiling),
-      message: "expected color, gradient or pattern, found " + str(type(body-color)),
+      message: "expected color, gradient or pattern, found "
+        + str(type(body-color)),
     )
   }
 
   let bodies = args.pos()
 
-  assert(bodies.len() > 0 and bodies.len() < 3, message: "Expected 1 or 2 bodies")
+  assert(
+    bodies.len() > 0 and bodies.len() < 3,
+    message: "Expected 1 or 2 bodies",
+  )
 
   let (title, body) = if bodies.len() == 1 {
     (none, bodies.at(0))
@@ -999,7 +1047,9 @@
     radius: (left: 0pt, right: radius),
     stroke: (
       left: (thickness: stroke-width, paint: accent-color, cap: "butt"),
-      top: if title != none { border-width + header-color } else { border-width + border-color },
+      top: if title != none { border-width + header-color } else {
+        border-width + border-color
+      },
       rest: border-width + border-color,
     ),
     {
