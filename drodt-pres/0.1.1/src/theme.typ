@@ -43,9 +43,10 @@
 
   set align(center + horizon)
   block(
-    width: 101%,
-    height: -25%,
-    stroke: (top: 0.5pt + self.colors.black.lighten(70%)),
+    width: 100%,
+    height: 5%,
+    stroke: (top: 0.5pt + self.colors.black.lighten(75%)),
+    inset: (top: 2pt),
     {
       set text(size: 1.5em)
 
