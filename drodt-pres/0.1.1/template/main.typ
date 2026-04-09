@@ -1,4 +1,4 @@
-#import "@preview/touying:0.7.0": *
+#import "@preview/touying:0.7.1": *
 #import "@local/drodt-pres:0.1.1": *
 
 #let title = [Title]
