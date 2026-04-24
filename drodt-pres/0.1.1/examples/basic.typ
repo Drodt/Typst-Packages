@@ -1,4 +1,4 @@
-#import "@preview/touying:0.7.1": *
+#import "@preview/touying:0.7.3": *
 #import "../src/lib.typ": *
 
 #show: theme.with(
