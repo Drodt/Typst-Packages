@@ -218,7 +218,7 @@
 
 #let s-domain(t) = $#domain^#t$
 
-#let interp = math.text("I")
+#let interp = math.cal("I")
 
 #let domain-order = $prec.eq_#domain$
 
@@ -237,13 +237,13 @@
 #let vals-three = math.attach(valname, br: $#k-struct, s_3, beta$)
 #let vals-four = math.attach(valname, br: $#k-struct, s_4, beta$)
 
-#let valids = vals + models
-#let valids-prime = vals-prime + models
-#let valids-prime-prime = vals-prime-prime + models
-#let valids-one = vals-one + models
-#let valids-two = vals-two + models
-#let valids-three = vals-three + models
-#let valids-four = vals-four + models
+#let valids = $(#k-struct, s, beta)$ + models
+#let valids-prime = $(#k-struct, s', beta)$ + models
+#let valids-prime-prime = $(#k-struct, s'', beta)$ + models
+#let valids-one = $(#k-struct, s_1, beta)$ + models
+#let valids-two = $(#k-struct, s_2, beta)$ + models
+#let valids-three = $(#k-struct, s_3, beta)$ + models
+#let valids-four = $(#k-struct, s_4, beta)$ + models
 
 #let para-fn(name, ..args) = $dlfunc(#name)"<"#args.pos().join($,$)">"$
 #let para-sort(name, ..args) = $dlsort(#name)"<"#args.pos().join($,$)">"$
@@ -280,3 +280,5 @@
 #let arrGetI = dlfunc("get")
 #let arrSet(S) = para-fn("set", S)
 #let arrSetI = dlfunc("set")
+
+#let loopScope(x, body) = $attach(br: #x, arrow.cw)#body arrow.ccw$
