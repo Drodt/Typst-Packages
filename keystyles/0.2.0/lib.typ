@@ -226,6 +226,7 @@
 
 #let structure = math.cal("M")
 #let k-struct = math.cal("K")
+#let updateContext = math.cal("U")
 
 #let valname = math.text("val")
 #let vals = math.attach(valname, br: $#k-struct, s, beta$)
