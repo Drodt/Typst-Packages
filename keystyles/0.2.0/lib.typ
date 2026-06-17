@@ -211,6 +211,7 @@
 #let func(f) = math.italic(f)
 
 #let states = math.cal("S")
+#let Updates = "Upd"
 
 #let domain = math.cal("D")
 #let d-type = sym.delta
@@ -280,5 +281,8 @@
 #let arrGetI = dlfunc("get")
 #let arrSet(S) = para-fn("set", S)
 #let arrSetI = dlfunc("set")
+#let arrplaceSym = math.italic("arrPlc")
+#let arrplace(a, b) = $place(#a\,#b)$
+#let arrplaceE(a, b) = $arrplaceSym(#a, #b)$
 
 #let loopScope(x, body) = $attach(br: #x, arrow.cw)#body arrow.ccw$
