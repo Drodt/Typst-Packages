@@ -1,0 +1,7 @@
+[package]
+name = "cleveref"
+version = "0.1.0"
+entrypoint = "cleveref.typ"
+authors = ["Daniel Drodt <daniel.drodt@tu-darmstadt.de>"]
+license = "MIT"
+description = "Smart references"
