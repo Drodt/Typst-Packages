@@ -1,6 +1,6 @@
 #import "@local/abbrv:0.1.0": make-abbrvs
-#import "@preview/ctheorems:1.1.2": thmrules
-#import "@preview/drafting:0.2.0": set-page-properties, set-margin-note-defaults
+#import "@preview/ctheorems:1.1.3": thmrules
+#import "@preview/drafting:0.2.2": set-margin-note-defaults, set-page-properties
 
 #let format-date(date) = context {
   if text.lang == "de" {
@@ -51,10 +51,10 @@
   let left-margin = 2.5cm
   let right-margin = if draft { 5cm } else { 2.5cm }
   set page(
-  	numbering: "1",
-  	number-align: center,
-  	margin: (left: left-margin, right: right-margin),
-  	header: h(1fr) + title
+    numbering: "1",
+    number-align: center,
+    margin: (left: left-margin, right: right-margin),
+    header: h(1fr) + title,
   )
   set-page-properties(margin-left: left-margin, margin-right: right-margin)
   set-margin-note-defaults(hidden: not draft)
@@ -108,7 +108,6 @@
       #abstract
     ]
     v(1.618fr)
-    
   }
 
   if preface != none {
