@@ -107,7 +107,7 @@
   box(lbl + h(measure(pt).width - measure(lbl).width) + linebreak() + pt)
 }
 
-#let dl-ref(name) = link(label("dlrule:" + name))[Rule~#smallcaps(name)]
+#let dlRef(name) = link(label("dlrule:" + name))[Rule~#smallcaps(name)]
 
 #let closeBranch = sym.star
 
@@ -186,25 +186,25 @@
 #let RustyKeY = [Rusty#KeY]
 
 #let models = sym.tack.rr
-#let not-models = sym.tack.rr.not
+#let notModels = sym.tack.rr.not
 
 #let types = math.cal("T")
-#let t-sym = math.text("TSym")
+#let tSym = math.text("TSym")
 
 #let subtype = sym.subset.eq.sq
-#let subtype-direct = [$#subtype^0$]
+#let subtypeDirect = [$#subtype^0$]
 #let supertype = sym.supset.eq.sq
-#let t-intersect = sym.inter.sq
-#let t-union = sym.union.sq
+#let tIntersect = sym.inter.sq
+#let tUnion = sym.union.sq
 
-#let v-sym = math.text("VSym")
-#let pv-sym = math.text("ProgVSym")
-#let f-sym = math.text("FSym")
-#let trm(ty) = $"Trm"_#ty$
-#let dl-trm(ty) = $"DLTrm"_#ty$
-#let fml = "Fml"
-#let fl-fml = "DLFml"
-#let p-var = "PVar"
+#let VSym = math.text("VSym")
+#let PVSym = math.text("ProgVSym")
+#let FSym = math.text("FSym")
+#let Trm(ty) = $"Trm"_#ty$
+#let dlTrm(ty) = $"DLTrm"_#ty$
+#let Fml = "Fml"
+#let DLFml = "DLFml"
+#let PVar = "PVar"
 
 #let fvar = math.italic("fv")
 #let var = math.italic("var")
@@ -214,72 +214,72 @@
 #let Updates = "Upd"
 
 #let domain = math.cal("D")
-#let d-type = sym.delta
-#let s-type = sym.sigma
+#let dType = sym.delta
+#let sType = sym.sigma
 
-#let s-domain(t) = $#domain^#t$
+#let sDomain(t) = $#domain^#t$
 
 #let interp = math.cal("I")
 
-#let domain-order = $prec.eq_#domain$
+#let domainOrder = $prec.eq_#domain$
 
 #let choice = math.cal("C")
 
 #let structure = math.cal("M")
-#let k-struct = math.cal("K")
+#let kStruct = math.cal("K")
 #let updateContext = math.cal("U")
 
 #let valname = math.text("val")
-#let vals = math.attach(valname, br: $#k-struct, s, beta$)
-#let vals-prime = math.attach(valname, br: $#k-struct, s', beta$)
-#let vals-prime-prime = math.attach(valname, br: $#k-struct, s'', beta$)
-#let vals-one = math.attach(valname, br: $#k-struct, s_1, beta$)
-#let vals-two = math.attach(valname, br: $#k-struct, s_2, beta$)
-#let vals-three = math.attach(valname, br: $#k-struct, s_3, beta$)
-#let vals-four = math.attach(valname, br: $#k-struct, s_4, beta$)
+#let valS = math.attach(valname, br: $#kStruct, s, beta$)
+#let valSPrime = math.attach(valname, br: $#kStruct, s', beta$)
+#let valSPrimePrime = math.attach(valname, br: $#kStruct, s'', beta$)
+#let valSOne = math.attach(valname, br: $#kStruct, s_1, beta$)
+#let valSTwo = math.attach(valname, br: $#kStruct, s_2, beta$)
+#let valSThree = math.attach(valname, br: $#kStruct, s_3, beta$)
+#let valSFour = math.attach(valname, br: $#kStruct, s_4, beta$)
 
-#let valids = $(#k-struct, s, beta)$ + models
-#let valids-prime = $(#k-struct, s', beta)$ + models
-#let valids-prime-prime = $(#k-struct, s'', beta)$ + models
-#let valids-one = $(#k-struct, s_1, beta)$ + models
-#let valids-two = $(#k-struct, s_2, beta)$ + models
-#let valids-three = $(#k-struct, s_3, beta)$ + models
-#let valids-four = $(#k-struct, s_4, beta)$ + models
+#let validS = $(#kStruct, s, beta)$ + models
+#let validSPrime = $(#kStruct, s', beta)$ + models
+#let validSPrimePrime = $(#kStruct, s'', beta)$ + models
+#let validSOne = $(#kStruct, s_1, beta)$ + models
+#let validSTwo = $(#kStruct, s_2, beta)$ + models
+#let validSThree = $(#kStruct, s_3, beta)$ + models
+#let validSFour = $(#kStruct, s_4, beta)$ + models
 
-#let para-fn(name, ..args) = $dlfunc(#name)"<"#args.pos().join($,$)">"$
-#let para-sort(name, ..args) = $dlsort(#name)"<"#args.pos().join($,$)">"$
+#let paraFn(name, ..args) = $dlfunc(#name)"<["#args.pos().join($,$)"]>"$
+#let paraSort(name, ..args) = $dlsort(#name)"<["#args.pos().join($,$)"]>"$
 
-#let instanceof(S) = para-fn("instanceof", S)
+#let instanceof(S) = paraFn("instanceof", S)
 
 // Integer
 
 #let Int = dlsort("int")
 
-#let in-int(ty) = text(style: "oblique", "in_" + ty)
+#let inInt(ty) = text(style: "oblique", "in_" + ty)
 
-#let inI32 = in-int("i32")
+#let inI32 = inInt("i32")
 
 #let add = dlfunc("add")
 
 // References
 
-#let RefS(S) = para-sort("RefS", S)
-#let RefM(S) = para-sort("RefM", S)
-#let Place(S) = para-sort("Place", S)
+#let RefS(S) = paraSort("RefS", S)
+#let RefM(S) = paraSort("RefM", S)
+#let Place(S) = paraSort("Place", S)
 
-#let refS(S) = para-fn("refS", S)
+#let refS(S) = paraFn("refS", S)
 #let refSI = dlfunc("refS")
-#let refM(S) = para-fn("refM", S)
+#let refM(S) = paraFn("refM", S)
 #let refMI = dlfunc("refM")
 #let place(x) = $floor.l #h(-.3em) floor.l #x ceil.r #h(-.3em) ceil.r$
 
 // Arrays
 
-#let Array(E, N) = para-sort("Array", E, $"const" #N$)
+#let Array(E, N) = paraSort("Array", E, $"const" #N$)
 
-#let arrGet(S) = para-fn("get", S)
+#let arrGet(S) = paraFn("get", S)
 #let arrGetI = dlfunc("get")
-#let arrSet(S) = para-fn("set", S)
+#let arrSet(S) = paraFn("set", S)
 #let arrSetI = dlfunc("set")
 #let arrplaceSym = math.italic("arrPlc")
 #let arrplace(a, b) = $place(#a\,#b)$
