@@ -73,6 +73,7 @@
 #let falseSem = $upright("f")#h(-.5mm)upright("f")$
 
 #let last = $upright("last")$
+#let lastEv = $upright("lastEv")$
 
 #let semChop = math.class("binary", $ast#h(-1mm)ast$)
 
